@@ -1,0 +1,42 @@
+.bg-gray{
+    background-color: #f6f8fa;
+}
+.soft{
+    color: #9aa3b2;
+}
+.dark-purple{
+    background-color: #0D0624;
+}
+.search{
+    text-align: left;
+}
+.title-color{
+    color: #1E2532;
+}
+.search{
+    border-radius: 12px;
+}
+.search-input{
+    border-radius: 15px;
+}
+#search{
+    border: none;
+    background-color: white;
+    color: #9AA3B2;
+}
+.search-button{
+    height: 2.5rem;
+    border-radius: 12px;
+    border: none;
+}
+#status{
+    height: 2rem;
+    border-radius: 12px;
+}
+.job-card{
+    border: none;
+}
+.more{
+    border: none;
+    border-radius: 14px;
+}
