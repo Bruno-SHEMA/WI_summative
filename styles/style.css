@@ -40,3 +40,14 @@
     border: none;
     border-radius: 14px;
 }
+.brr{
+    border-radius: 7px;
+}
+.disc{
+    color: #9ca9b5;
+}
+.circle{
+    border: 5px;
+    background-color: #1E2532;
+    border-radius: 50%;
+}
