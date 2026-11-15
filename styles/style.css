@@ -51,3 +51,19 @@
     background-color: #1E2532;
     border-radius: 50%;
 }
+.more{
+    color: #9AA3B2;
+}
+.profile img{
+    width: 70px;
+    
+}
+.link{
+    text-decoration: none;
+}
+.footer{
+    bottom: 0;
+}
+main{
+    letter-spacing: 1px;
+}

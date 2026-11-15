@@ -12,19 +12,23 @@
     />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body class="bg-gray">
+  <body class="bg-gray d-flex min-vh-100 flex-column">
     <header class="">
         <nav class="bg-white navbar">
-            <div class="row">
-            <div class="container row p-3">
+            <div class="container">
+            <div class="container p-3">
                 <div class="row">
-            <div class="col">
+            <div class="col-4">
                 <div class="logo nav-brand">
                     <p class="nav-brand fw-bolder h1">JobBridge</p>
                 </div>
             </div>
-            <div class="nav-links col ms-auto drawer-end">
-                <a href="#" class="ms-auto nav-link">Jobs</a>
+            <div class="nav-links col-7 ms-auto drawer-end">
+                <a href="#" class="ms-auto nav-link">Find Work</a>
+            </div>
+            <div class="profile col ms-auto">
+                <img src="assets/images.jfif" alt="" class="ms-auto">
+            </div>
             </div>
             </div>
             </div>
@@ -33,18 +37,18 @@
     <main class="row gap-8 m-5 mx-6">
         <div class="col bg-white brr">
             <div class="filter py-2">
-                <h4>Filter</h4>
+                <h4 class="title-color">Filter</h4>
                 <p class="fg-primary">clear all</p>
             </div>
             <div class="job-type py-2">
-                <h4>Job Type</h4>
+                <h4 class="title-color py-5">Job Type</h4>
                 <input type="checkbox" name="all" id=""> <span class="soft"> All</span><br>
                 <input type="checkbox" name="full" id=""> <span class="soft"> Full time</span><br>
                 <input type="checkbox" name="part" id=""> <span class="soft"> Part Time</span><br>
                 <input type="checkbox" name="remote" id=""> <span class="soft"> Remote</span>
             </div>
-            <div class="experience-level py-2">
-                <h4>Experience Level</h4>
+            <div class="experience-level">
+                <h4 class="py-5 title-color">Experience Level</h4>
                 <input type="checkbox" name="entry" id=""> <span class="soft"> Entry Level</span> <span class="soft"> 20 jobs</span><br>
                 <input type="checkbox" name="int" id=""> <span class="soft"> Intermediate</span><span class="soft"> 35 jobs</span><br>
                 <input type="checkbox" name="expoert" id=""> <span class="soft"> Expert</span><span class="soft"> 15 jobs</span>
@@ -86,14 +90,15 @@
                 <p class="title-color fw-bold px-5">Junior UI/UX Developer</p>
                 <p class="soft px-5">Category</p>
                 <p class="disc px-5">23 march 2026   | </span><span class="px-5">  rw </span></p>
+                <p class="more ms-auto fw-bold">More info --></p>
             </div>
-            <button class="more"></button>
         </div>
     </main>
-    <footer class="footer bg-white mt-6">
-        <div class="">
-            <p class="align-content-center">Footer</p>
-        </div>
+    <footer class="footer bg-white mt-auto">
+        <center>
+            <p class="title-color pt-3">Web Infrastructure summative - SHEMA Alain Bruno</p>
+            <p class="soft">github: Bruno-SHEMA <span class="px-5">|</span>gmail: b.shema3@alustudent.com</p>
+        </center>
     </footer>
 
 
