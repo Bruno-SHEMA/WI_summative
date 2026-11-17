@@ -41,3 +41,21 @@ function createJobCard(job){
     card.append(title,company,details,employment,location,description,applyLink);
     return card;
 }
+
+//fn to show those jobs on frontend
+function showJobs(jobs){
+    jobsContainer.innerHTML = "";
+    suggestedJobs.innerHTML = "";
+    if (!jobs.length){
+        jobsContainer.textContent = "Sorry na, No jobs found at the moment. Try Again!";
+        return;
+    }
+    jobs.forEach( job => {
+        const jobCard = createJobCard(job);
+        jobsContainer.appendChild(jobCard);
+    });
+    jobs.slice(0, 3).forEach(job => {
+        const suggestsCard = createJobCard(job);
+        suggestedJobs.appendChild(suggestsCard);
+    })
+}
