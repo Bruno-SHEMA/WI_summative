@@ -34,16 +34,28 @@ app.get("/api/health", (req, res)=>{
         message: "Itsss runninge!"
     });
 });
+
 app.get("/api/jobs", async (req, res) => {
     try {
         const { query } = req.query;
-        if (!query || typeof query!=="string" || !query.trim()){
-            return res.status(400).json({
-                message: "Please Provide jon Q"
+        const cacheKey = query ? query.trim().toLowerCase() : "discovery";
+        const cachedJobs = getCachedJobs(cacheKey);
+        if(cachedJobs){
+            return res.json({
+                status: "success",
+                src: "cache",
+                total: cachedJobs.length,
+                jobs: cachedJobs 
             });
         }
-        const jobs = await getJobs({query: query.trim()});
-        res.json({status: "success", total: jobs.length, jobs});
+        const jobs = query ? await getJobs({query: query.trim()}) : await getAllJobs();
+        cacheJobs(cacheKey, jobs);
+        return res.json({
+            status: "success",
+            src: "jsearch api",
+            total: jobs.length,
+            jobs
+        });
     } catch(error){console.error("Failed to retrieve jobs", error.message) 
         return res.status(502).json({status: "Oooops", message: "unable to get your jobs, Sorryrrrr!"});
     };
