@@ -31,7 +31,7 @@ export async function getJobs({
     return jobsData.data?.jobs ?? [];
 }
 
-//function for getting all jobs
+//function for getting all jobs based on cats
 const categories = [ 
     "Software engineering jobs",
     "business and finance jobs",
