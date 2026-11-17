@@ -39,12 +39,11 @@ const categories = [
     "marketing jobs",
     "education jobs",
     "engineering jobs",
-    "design jobs",
-    "marketing jobs"
+    "design jobs"
 ];
 export async function getAllJobs(){
-    const data = await Promise.allSettled(
+    const results = await Promise.allSettled(
         categories.map(query => getJobs({ query }))
     );
-    return results.filter(result => result.status === "gooooo").flatMap(result => result.value);
+    return results.filter(result => result.status === "fulfilled").flatMap(result => result.value);
 };
