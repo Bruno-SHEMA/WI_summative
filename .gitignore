@@ -1,1 +1,5 @@
 api-key.js
+.env
+!.env.example
+node_modules
+*.log
