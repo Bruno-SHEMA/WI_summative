@@ -38,6 +38,14 @@ app.get("/api/health", (req, res)=>{
 app.get("/api/jobs", async (req, res) => {
     try {
         const { query } = req.query;
+        // Shii to validate request query
+        if (query !== undefined && (typeof query !== "string" || !query.trim())){
+            return res.status(400).json({
+                status: "Oooops",
+                message: "Wetin be this! please provide a W request querry"
+            });
+        }
+        
         const cacheKey = query ? query.trim().toLowerCase() : "discovery";
         const cachedJobs = getCachedJobs(cacheKey);
         if(cachedJobs){
