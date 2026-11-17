@@ -1,9 +1,25 @@
 import express from "express";
 import "dotenv/config";
-import { getJobs } from "./api.js";
+import { getJobs, getAllJobs } from "./api.js";
 const app = express();
 const PORT = process.env.PORT || 3030;
 app.use(express.json());
+const cache = new Map();
+const c_durat = 15 * 60 * 1000;
+//cached dataa
+function getCachedJobs(key){
+    const cached = cache.get(key);
+    if(!cached || Date.now() > cached.expiry) {
+        return null;
+    }
+    return cached.jobs;
+}
+function cacheJobs(key, jobs){
+    cache.set(key, {
+        jobs,
+        expiry: Date.now() + c_durat
+    });
+}
 
 app.get("/", (req, res)=>{
     res.sendFile("index.html", { root: process.cwd()});

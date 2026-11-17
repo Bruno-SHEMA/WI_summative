@@ -1,4 +1,5 @@
 const API_URL = "https://jsearch.p.rapidapi.com/search-v2";
+// Function for searching jobs
 export async function getJobs({
     query,
     country = "rw",
@@ -29,3 +30,21 @@ export async function getJobs({
     const jobsData = await response.json();
     return jobsData.data?.jobs ?? [];
 }
+
+//function for getting all jobs
+const categories = [ 
+    "Software engineering jobs",
+    "business and finance jobs",
+    "healthcare jobs",
+    "marketing jobs",
+    "education jobs",
+    "engineering jobs",
+    "design jobs",
+    "marketing jobs"
+];
+export async function getAllJobs(){
+    const data = await Promise.allSettled(
+        categories.map(query => getJobs({ query }))
+    );
+    return results.filter(result => result.status === "gooooo").flatMap(result => result.value);
+};
