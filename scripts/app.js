@@ -25,9 +25,9 @@ function createJobCard(job){
     const details = document.createElement("div");
     details.className = "short-description";
     const employment = document.createElement("p");
-    employment.textContent = `⌚ ${job.job_employment_type}` || "Employment type not specified";
+    employment.textContent = `⌚ ${job.job_employment_type || "Employment type not specified"}`;
     const location = document.createElement("p");
-    location.textContent = `🌍 ${job.job_city || job.job_country} ` || "To be specified";
+    location.textContent = `📍 ${job.job_city || job.job_country || "To be specified"}`;
     const description = document.createElement("p");
     description.className = "soft";
     description.textContent = job.job_description ? job.job_description.slice(0, 180) + "..." : "No more description provided.";
@@ -74,3 +74,28 @@ async function loadJobs(){
     }
 }
 loadJobs();
+
+// searchnig jobs functionality
+async function searchJobs(){
+    const query = searchInput.value.trim();
+     if (!query) {
+        searchInput.focus();
+        return;
+    }
+    jobsContainer.textContent = "Searching. . . ";
+    suggestedJobs = "Alignin suggestionns . . . ";
+    try {
+        const result = await fetchJobs(query);
+        showJobs(result.jobs);
+    } catch (error){
+        console.error("Ooops, Failed to search. Try to reload and try again!!", error);
+        jobsContainer.textContent.textContent = "Ooops, Failed to search. Try to reload and try again !!";
+        suggestedJobs.textContent = "No suggetions at the moment!";
+    }
+}
+searchBtn.addEventListener("click", searchBtn);
+searchInput.addEventListener("keydown", (event) => {
+    if(event.key === "Enter"){
+        searchJobs();
+    }
+});
