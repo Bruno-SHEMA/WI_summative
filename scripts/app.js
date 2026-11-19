@@ -59,19 +59,3 @@ function showJobs(jobs){
         suggestedJobs.appendChild(suggestsCard);
     })
 }
-
-// func to get n display jbs
-function displayJobs(jobs){
-    jobsContainer.innerHTML = "";
-    suggestedJobs.innerHTML.innerHTML = "";
-    if (!jobs.length) {
-        jobsContainer.textContent = "Ooops, No jobs found. Try searching again";
-        return;
-    }
-
-    jobs.forEach(job=>{
-        const jobCard = createJobCard(job);
-        jobsContainer.appendChild(jobCard);
-    });
-    
-}
