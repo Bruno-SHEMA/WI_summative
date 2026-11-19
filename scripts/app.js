@@ -89,11 +89,11 @@ async function searchJobs(){
         showJobs(result.jobs);
     } catch (error){
         console.error("Ooops, Failed to search. Try to reload and try again!!", error);
-        jobsContainer.textContent.textContent = "Ooops, Failed to search. Try to reload and try again !!";
+        jobsContainer.textContent = "Ooops, Failed to search. Try to reload and try again !!";
         suggestedJobs.textContent = "No suggetions at the moment!";
     }
 }
-searchBtn.addEventListener("click", searchBtn);
+searchBtn.addEventListener("click", searchJobs);
 searchInput.addEventListener("keydown", (event) => {
     if(event.key === "Enter"){
         searchJobs();
