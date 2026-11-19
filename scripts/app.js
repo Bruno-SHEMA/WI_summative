@@ -18,10 +18,10 @@ function createJobCard(job){
     card.className = "job-card bg-white card my-5 p-8";
     const title = document.createElement("h4");
     title.className = "title-color";
-    title.textContent = job.job-title || "Un-named Position";
+    title.textContent = job.job_title || "Un-named Position";
     const company = document.createElement("p");
     company.className = "soft";
-    company.textContent = job.employer_name || "CC comppany";
+    company.textContent = job.employer_name || "ComppanyName unavailable";
     const details = document.createElement("div");
     details.className = "short-description";
     const employment = document.createElement("p");
@@ -30,10 +30,10 @@ function createJobCard(job){
     location.textContent = `🌍 ${job.job_city || job.job_country} ` || "To be specified";
     const description = document.createElement("p");
     description.className = "soft";
-    description.textCOntent = job.job_description ? job.job_description.slice(0, 180) + "..." : "No more description provided.";
+    description.textContent = job.job_description ? job.job_description.slice(0, 180) + "..." : "No more description provided.";
     const applyLink = document.createElement("a");
     applyLink.className = "more dark-purple fg-white p-4 px-5";
-    applyLink.textCOntent = "Apply Now";
+    applyLink.textContent = "Apply Now";
     applyLink.href = job.job_apply_link || "#";
     applyLink.target = "_blank";
     applyLink.rel = "noopener noreferrer";
@@ -59,3 +59,4 @@ function showJobs(jobs){
         suggestedJobs.appendChild(suggestsCard);
     })
 }
+
