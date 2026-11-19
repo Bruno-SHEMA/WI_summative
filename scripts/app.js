@@ -60,3 +60,17 @@ function showJobs(jobs){
     })
 }
 
+// Load Jobss
+async function loadJobs(){
+    jobsContainer.textContent = "Loading Jobs. . .";
+    suggestedJobs.textContent = "Loading Suggested jobs . . . .";
+    try{
+        const result = await fetchJobs();
+        showJobs(result.jobs);
+    } catch(error){
+        console.error("Oooops, error loading jobs", error);
+        jobsContainer.textContent = "Unable to load them jobs, try again later!";
+        suggestedJobs.textContent = "Unable to load suggestions at the moment Ooo";
+    }
+}
+loadJobs();
