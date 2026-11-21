@@ -83,7 +83,7 @@ async function searchJobs(){
         return;
     }
     jobsContainer.textContent = "Searching. . . ";
-    suggestedJobs = "Alignin suggestionns . . . ";
+    suggestedJobs.textContent = "Alignin suggestionns . . . ";
     try {
         const result = await fetchJobs(query);
         showJobs(result.jobs);
