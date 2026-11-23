@@ -39,20 +39,19 @@
         <div class="col bg-white brr">
             <div class="filter py-2">
                 <h4 class="title-color">Filter</h4>
-                <p class="fg-primary">clear all</p>
+                <button class="fg-primary btn btn-link p-0" id="clear-filters">clear all</button>
             </div>
             <div class="job-type py-2">
                 <h4 class="title-color py-5">Job Type</h4>
-                <input type="checkbox" name="all" id=""> <span class="soft"> All</span><br>
-                <input type="checkbox" name="full" id=""> <span class="soft"> Full time</span><br>
-                <input type="checkbox" name="part" id=""> <span class="soft"> Part Time</span><br>
-                <input type="checkbox" name="remote" id=""> <span class="soft"> Remote</span>
+                <input type="checkbox" name="full" id="full-time" value="FULLTIME"> <span class="soft"> Full time</span><br>
+                <input type="checkbox" name="part" id="part-time" value="PARTTIME"> <span class="soft"> Part Time</span><br>
+                <input type="checkbox" name="internship" id="internship" value="intern"> <span class="soft"> internship</span>
+
             </div>
             <div class="experience-level">
-                <h4 class="py-5 title-color">Experience Level</h4>
-                <input type="checkbox" name="entry" id=""> <span class="soft"> Entry Level</span> <span class="soft"> 20 jobs</span><br>
-                <input type="checkbox" name="int" id=""> <span class="soft"> Intermediate</span><span class="soft"> 35 jobs</span><br>
-                <input type="checkbox" name="expoert" id=""> <span class="soft"> Expert</span><span class="soft"> 15 jobs</span>
+                <h4 class="py-5 title-color">Workplace</h4>
+                <input type="checkbox" class="workplace-filter" value="remote" id="remote"> <span class="soft">Remote</span><br>
+                <input type="checkbox" class="workplace-filter" value="On-site" id=""> <span class="soft">On-site</span><br>
             </div>
             
         </div>
@@ -66,23 +65,6 @@
                 </div>
             </div>
             <div class="job-card bg-white card my-5 p-8">
-                <!--<div class="card-title row px-8">
-                    <div class="title col-8">
-                        <h4 class="title-color">Senior Frontend web developer</h4>
-                        <p class="soft">Company</p>
-                    </div>
-                    <span class="col-2 bg-success py-1 fg-white" id="status">On-going</span>
-                </div>
-                <div class="short-description row">
-                    <p class="col">⌚ <span class="title-color fw-bolder ">Full time</span></p>
-                    <p class="col">💼 <span class="title-color fw-bold">Experience</span></p>
-                    <p class="col">🌍 <span class="title-color fw-bold">Location</span></p>
-                    <p class="col soft">Date: 23 mar 2026</p>
-                </div>
-                <p class="soft">
-                    Job Description
-                </p>
-                <button class="ms-auto more dark-purple fg-white p-3 px-5">More details</button>  -->
                 <div id="jobs-container" aria-live="polite">
                     <p class="soft">Loading Jobs don reach, Please wait....</p>
                 </div>
@@ -91,10 +73,6 @@
         <div class="col">
             <p class="title-color fw-bolder p-6 bg-white brr">Suggested Job(s)</p>
             <div id="suggested-jobs-container" class="job-card bg-white py-6 px-5">
-                <!--<p class="title-color fw-bold px-5">Junior UI/UX Developer</p>
-                <p class="soft px-5">Category</p>
-                <p class="disc px-5">23 march 2026   | </span><span class="px-5">  rw </span></p>
-                <p class="more ms-auto fw-bold">More info -- </p>-->
                 <p class="soft">Loading suggested jobs don reach ..... </p>
             </div>
         </div>
