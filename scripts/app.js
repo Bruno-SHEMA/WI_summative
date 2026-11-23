@@ -2,7 +2,10 @@ const searchInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-button");
 const jobsContainer = document.getElementById("jobs-container");
 const suggestedJobs = document.getElementById("suggested-jobs-container");
-
+const jobType = document.querySelectorAll(".job-type-filter");
+const workplace = document.querySelectorAll(".workplace-filter");
+const clear = document.getElementById("clear-filters");
+let allJobs = [];
 //fn to get jobs from node
 async function fetchJobs(query = ""){
     const url = query ? `/api/jobs?query=${encodeURIComponent(query)}` : "/api/jobs";
@@ -66,6 +69,7 @@ async function loadJobs(){
     suggestedJobs.textContent = "Loading Suggested jobs . . . .";
     try{
         const result = await fetchJobs();
+        allJobs = result.jobs;
         showJobs(result.jobs);
     } catch(error){
         console.error("Oooops, error loading jobs", error);
