@@ -65,11 +65,11 @@ function showJobs(jobs){
         suggestedJobs.appendChild(suggestsCard);
     })
 }
+const selectWorkplace = [...workplace].filter(filter => filter.checked).map(filter => filter.value);
 // filtering function  
 function filters(){
-    const searchTerm = input.value.trim().toLowerCase();
+    const searchTerm = searchInput.value.trim().toLowerCase();
     const jobTypes = [...jobType].filter(filter => filter.checked).map(filter => filter.value);
-    const selectWorkplace = [...workplace].filter(filter => filter.checked).map(filter => filter.value);
     const filteredJobs = allJobs.filter(job => {
         const searchableText = [
             job.job_title,
@@ -80,7 +80,7 @@ function filters(){
         ].join(" ").toLowerCase();
         const matchesSearch = searchableText.includes(searchTerm);
         const employementTypes = job.job_employment_types || [];
-        const matchJobType = jobTypes.length === 0 || jobTypes.some(type => employementTypes.include(type));
+        const matchJobType = jobTypes.length === 0 || jobTypes.some(type => employementTypes.includes(type));
         const matchWorkplace = selectWorkplace.length === 0 || selectWorkplace.some(workplace => {
             if (workplace === "remote"){
                 return job.job_is_remote === true;
@@ -92,7 +92,8 @@ function filters(){
         });
         return matchesSearch && matchJobType && matchWorkplace;
     });
-    showJobs(filteredJobs);
+    const sortedJobs = sortJobs(filteredJobs);
+    showJobs(sortedJobs);
 
 }
 // Load Jobss
@@ -113,13 +114,13 @@ async function loadJobs(){
 loadJobs();
 
 // searchnig jobs functionality
-searchBtn.addEventListener("click", applyFilters);
-searchInput.addEventListener("input", applyFilters);
+searchBtn.addEventListener("click", filters);
+searchInput.addEventListener("input", filters);
 jobType.forEach(filter => {
-    filter.addEventListener("change", applyFilters);
+    filter.addEventListener("change", filters);
 });
 selectWorkplace.forEach(filter => {
-    filter.addEventListener("change", applyFilters);
+    filter.addEventListener("change", filters);
 });
 clear.addEventListener("click", () => {
     jobType.forEach(filter => {
@@ -129,11 +130,12 @@ clear.addEventListener("click", () => {
         filter.checked = false;
     });
     searchInput.value = "";
-    applyFilters();
+    filters();
 });
+sortSelect.addEventListener("change", filters);
 
 //fn to sort
-function sortJobs(){
+function sortJobs(jobs) {
     const sortOpt = sortSelect.value;
     const sortedJobs = [...jobs];
     switch (sortOpt) {
@@ -147,7 +149,7 @@ function sortJobs(){
             );
             break;
         case "title-asc":
-            sortedJobs.sort((a, b)=> (a.job_title || "").localCompare(b.job_title || ""));
+            sortedJobs.sort((a, b)=> (a.job_title || "").localeCompare(b.job_title || ""));
             break;
     }
     return sortedJobs;
