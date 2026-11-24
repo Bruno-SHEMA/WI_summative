@@ -62,7 +62,36 @@ function showJobs(jobs){
         suggestedJobs.appendChild(suggestsCard);
     })
 }
+// filtering function  
+function filters(){
+    const searchTerm = input.value.trim().toLowerCase();
+    const jobTypes = [...jobType].filter(filter => filter.checked).map(filter => filter.value);
+    const selectWorkplace = [...workplace].filter(filter => filter.checked).map(filter => filter.value);
+    const filteredJobs = allJobs.filter(job => {
+        const searchableText = [
+            job.job_title,
+            job.employer_name,
+            job.job_description,
+            job.job_city,
+            job.job_country
+        ].join(" ").toLowerCase();
+        const matchesSearch = searchableText.includes(searchTerm);
+        const employementTypes = job.job_employment_types || [];
+        const matchJobType = jobTypes.length === 0 || jobTypes.some(type => employementTypes.include(type));
+        const matchWorkplace = selectWorkplace.length === 0 || selectWorkplace.some(workplace => {
+            if (workplace === "remote"){
+                return job.job_is_remote === true;
+            }
+            if (workplace === "onsite"){
+                return job.job_is_remote === false;
+            }
+            return false;
+        });
+        return matchesSearch && matchJobType && matchWorkplace;
+    });
+    showJobs(filteredJobs);
 
+}
 // Load Jobss
 async function loadJobs(){
     jobsContainer.textContent = "Loading Jobs. . .";
@@ -70,6 +99,7 @@ async function loadJobs(){
     try{
         const result = await fetchJobs();
         allJobs = result.jobs;
+        filters();
         showJobs(result.jobs);
     } catch(error){
         console.error("Oooops, error loading jobs", error);
@@ -80,26 +110,11 @@ async function loadJobs(){
 loadJobs();
 
 // searchnig jobs functionality
-async function searchJobs(){
-    const query = searchInput.value.trim();
-     if (!query) {
-        searchInput.focus();
-        return;
-    }
-    jobsContainer.textContent = "Searching. . . ";
-    suggestedJobs.textContent = "Alignin suggestionns . . . ";
-    try {
-        const result = await fetchJobs(query);
-        showJobs(result.jobs);
-    } catch (error){
-        console.error("Ooops, Failed to search. Try to reload and try again!!", error);
-        jobsContainer.textContent = "Ooops, Failed to search. Try to reload and try again !!";
-        suggestedJobs.textContent = "No suggetions at the moment!";
-    }
-}
-searchBtn.addEventListener("click", searchJobs);
-searchInput.addEventListener("keydown", (event) => {
-    if(event.key === "Enter"){
-        searchJobs();
-    }
+searchBtn.addEventListener("click", applyFilters);
+searchInput.addEventListener("input", applyFilters);
+jobType.forEach(filter => {
+    filter.addEventListener("change", applyFilters);
+});
+selectWorkplace.forEach(filter => {
+    filter.addEventListener("change", applyFilters);
 });
