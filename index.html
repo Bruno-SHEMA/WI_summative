@@ -37,6 +37,14 @@
     </header>
     <main class="row gap-8 m-5 mx-6">
         <div class="col bg-white brr">
+            <div class="sort my-5">
+                <h4 class="title-color mb-0">Sort: </h4>
+                <select id="sort-jobs" class="form-select w-auto p-1">
+                    <option value="newst">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="asc">Title(A-Z)</option>
+                </select>
+            </div>
             <div class="filter py-2">
                 <h4 class="title-color">Filter</h4>
                 <button class="fg-primary btn btn-link p-0" id="clear-filters">clear all</button>
@@ -53,7 +61,6 @@
                 <input type="checkbox" class="workplace-filter" value="remote" id="remote"> <span class="soft">Remote</span><br>
                 <input type="checkbox" class="workplace-filter" value="On-site" id=""> <span class="soft">On-site</span><br>
             </div>
-            
         </div>
         <div class="col-7">
             <div class="search fg-white dark-purple p-8">
@@ -91,6 +98,6 @@
       integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="scripts/app.js"></script>
+    <!--<script type="module" src="scripts/app.js"></script>-->
   </body>
 </html>
