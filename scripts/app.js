@@ -51,6 +51,7 @@ function showJobs(jobs){
     suggestedJobs.innerHTML = "";
     if (!jobs.length){
         jobsContainer.textContent = "Sorry na, No jobs found at the moment. Try Again!";
+        suggestedJobs.textContent = "Sorry na, No suggestions available!";
         return;
     }
     jobs.forEach( job => {
