@@ -44,3 +44,19 @@ function displayJob(job){
     }
     
 }
+
+async function loadJobDetails(){
+    if(!job){
+        detailsContainer.textContent = "No job was selectedddddddddddd.";
+        return
+    }
+    try {
+        const response = await fetch(`/api/jobs/detail?id=${encodeURIComponent(jobId)}`);
+        const result = await response.json();
+        if (!response.ok){ throw new Error(result.message || "Unable to retrieve 'em")};
+        displayJob(result.job);
+    } catch (error) {
+        console.error("Failed to load more detailss", error);
+        detailsContainer.textContent = "Unable to load more job details, please go back and try again!"
+    }
+}
