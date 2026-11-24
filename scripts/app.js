@@ -118,3 +118,13 @@ jobType.forEach(filter => {
 selectWorkplace.forEach(filter => {
     filter.addEventListener("change", applyFilters);
 });
+clear.addEventListener("click", () => {
+    jobType.forEach(filter => {
+        filter.checked = false;
+    });
+    selectWorkplace.forEach(filter => {
+        filter.checked = false;
+    });
+    searchInput.value = "";
+    applyFilters();
+});
