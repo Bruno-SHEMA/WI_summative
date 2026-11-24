@@ -5,6 +5,8 @@ const suggestedJobs = document.getElementById("suggested-jobs-container");
 const jobType = document.querySelectorAll(".job-type-filter");
 const workplace = document.querySelectorAll(".workplace-filter");
 const clear = document.getElementById("clear-filters");
+const sortSelect = document.getElementById("sort-jobs");
+
 let allJobs = [];
 //fn to get jobs from node
 async function fetchJobs(query = ""){
@@ -129,3 +131,24 @@ clear.addEventListener("click", () => {
     searchInput.value = "";
     applyFilters();
 });
+
+//fn to sort
+function sortJobs(){
+    const sortOpt = sortSelect.value;
+    const sortedJobs = [...jobs];
+    switch (sortOpt) {
+        case "newest":
+            sortedJobs.sort((a, b)=> (b.job_posted_at_timestamp || 0) - (a.job_posted_at_timestamp || 0));
+            break;
+        case "oldest":
+            sortedJobs.sort((a, b) => 
+            (a.job_posted_at_timestamp || 0) - 
+            (b.job_posted_at_timestamp || 0)
+            );
+            break;
+        case "title-asc":
+            sortedJobs.sort((a, b)=> (a.job_title || "").localCompare(b.job_title || ""));
+            break;
+    }
+    return sortedJobs;
+}
