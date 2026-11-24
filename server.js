@@ -95,6 +95,11 @@ app.get("/api/jobs/detail", async (req, res) => {
         });
     }
 });
+app.get("/job-details", (req, res)=>{
+    res.sendFile("Job-details.html", {
+        root: process.cwd()
+    });
+});
 app.listen(PORT, ()=>{
     console.log(`Runningn on at http://localhost:${PORT}`);
 });
