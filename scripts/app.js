@@ -104,7 +104,6 @@ async function loadJobs(){
         const result = await fetchJobs();
         allJobs = result.jobs;
         filters();
-        showJobs(result.jobs);
     } catch(error){
         console.error("Oooops, error loading jobs", error);
         jobsContainer.textContent = "Unable to load them jobs, try again later!";
@@ -119,14 +118,14 @@ searchInput.addEventListener("input", filters);
 jobType.forEach(filter => {
     filter.addEventListener("change", filters);
 });
-selectWorkplace.forEach(filter => {
+workplace.forEach(filter => {
     filter.addEventListener("change", filters);
 });
 clear.addEventListener("click", () => {
     jobType.forEach(filter => {
         filter.checked = false;
     });
-    selectWorkplace.forEach(filter => {
+    workplace.forEach(filter => {
         filter.checked = false;
     });
     searchInput.value = "";

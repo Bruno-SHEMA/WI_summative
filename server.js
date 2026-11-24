@@ -69,6 +69,32 @@ app.get("/api/jobs", async (req, res) => {
     };
 
 })
+
+//to get one job's details
+app.get("/api/jobs/detail", async (req, res) => {
+    try {
+        const { id } = req.query;
+        let jobs = getCachedJobs("discovery");
+        if(!jobs) {
+            jobs = await getAllJobs();
+            cacheJobs("discovery", jobs);
+        }
+        const job = jobs.find(item => item.job_id === id);
+        if(!job) {
+            return res.status(404).json({
+                status: "error",
+                message: "Sorry That job was not found!!"
+            });
+        }
+        return res.json({status: "sucess", job});
+    } catch (error){
+        console.error("Failed to get job detailss: ", error.message);
+        return res.status(502).json({
+            status: "error",
+            message: "Oooo unable to retrieve job details."
+        });
+    }
+});
 app.listen(PORT, ()=>{
     console.log(`Runningn on at http://localhost:${PORT}`);
 });
