@@ -96,7 +96,7 @@ app.get("/api/jobs/detail", async (req, res) => {
     }
 });
 app.get("/job-details", (req, res)=>{
-    res.sendFile("Job-details.html", {
+    res.sendFile("job-details.html", {
         root: process.cwd()
     });
 });

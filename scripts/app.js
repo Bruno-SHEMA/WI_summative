@@ -44,7 +44,7 @@ function createJobCard(job){
     applyLink.rel = "noopener noreferrer";
 
     const detailsLink = document.createElement("a");
-    detailsLink.className = "more dark-purple fg-white p-3 px-5";
+    detailsLink.className = "more dark-purple fg-white p-3 px-5 my-3";
     detailsLink.textContent = "More details ->";
     detailsLink.href = `/job-details?id=${encodeURIComponent(job.job_id)}`;
     card.append(title,company,details,employment,location,description,detailsLink,applyLink);
