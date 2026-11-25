@@ -51,7 +51,7 @@
     background-color: #1E2532;
     border-radius: 50%;
 }
-.more{
+.more {
     color: #9AA3B2;
 }
 .profile img{
@@ -66,4 +66,39 @@
 }
 main{
     letter-spacing: 1px;
+}
+
+.stickyy-navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.job-layout{
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(220px, 280px);
+    gap: 24px;
+    align-items: start;
+    margin: 32px;
+}
+.filter-sidebar,
+.suggested-sidebar {
+    position: sticky;
+    top: 110px;
+    align-self: start;
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+}
+.jobs-column{
+    min-width: 0;
+}
+@media (max-width: 992px) {
+    .job-layout{
+        grid-template-columns: 1fr;
+        margin: 20px;
+    }
+    .filter-sidebar,.suggested-sidebar {
+        position: static;
+        max-height: none;
+        overflow: visible;
+    }
 }

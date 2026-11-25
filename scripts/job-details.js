@@ -46,7 +46,7 @@ function displayJob(job){
 }
 
 async function loadJobDetails(){
-    if(!job){
+    if(!jobId){
         detailsContainer.textContent = "No job was selectedddddddddddd.";
         return
     }
@@ -60,3 +60,4 @@ async function loadJobDetails(){
         detailsContainer.textContent = "Unable to load more job details, please go back and try again!"
     }
 }
+loadJobDetails();
